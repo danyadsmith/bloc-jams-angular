@@ -72,4 +72,4 @@ gulp.task('watch', function(){
   gulp.series('images', browsersync.reload));
 });
 
-gulp.task('default', gulp.parallel('browsersync', 'styles', 'scripts', 'images', 'watch'));∫
+gulp.task('default', gulp.parallel('browsersync', 'styles', 'scripts', 'images', 'watch'));
