@@ -444,6 +444,11 @@ body.landing {
 
 .selling-points {
   position: relative; }
+  .selling-points::before, .selling-points::after {
+    content: " ";
+    display: table; }
+  .selling-points::after {
+    clear: both; }
 
 .point {
   position: relative;

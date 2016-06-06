@@ -34,6 +34,7 @@ body.landing {
 
 .selling-points {
   position: relative;
+  @include clear-fix;
 }
 
 .point {
