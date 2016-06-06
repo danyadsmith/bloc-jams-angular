@@ -378,13 +378,6 @@ body {
   color: white;
   min-height: 100%; }
 
-.navbar {
-  padding: 0.5rem;
-  background-color: #65125f; }
-  .navbar .logo {
-    position: relative;
-    left: 2rem; }
-
 .container {
   margin: 0 auto;
   max-width: 64rem; }
@@ -414,6 +407,40 @@ body {
 @media (min-width: 1024px) {
   html {
     font-size: 120%; } }
+
+.navbar {
+  position: relative;
+  padding: 0.5rem;
+  background-color: rgba(101, 18, 95, 0.5);
+  z-index: 1; }
+  .navbar .logo {
+    position: relative;
+    left: 2rem;
+    cursor: pointer; }
+  .navbar .links-container {
+    display: table;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100px;
+    color: white;
+    text-decoration: none; }
+    .navbar .links-container .navbar-link {
+      display: table-cell;
+      position: relative;
+      height: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      vertical-align: middle;
+      color: white;
+      font-size: 0.625rem;
+      letter-spacing: 0.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer; }
+    .navbar .links-container .navbar-link:hover {
+      color: #e93275; }
 
 body.landing {
   background-color: #3a173f; }
@@ -460,3 +487,36 @@ body.landing {
 .ion-iphone {
   color: #e93275;
   font-size: 5rem; }
+
+body.collection {
+  background-image: url(../images/blurred_backgrounds/blur_bg_2.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover; }
+
+.album-covers {
+  position: relative; }
+  .album-covers::before, .album-covers::after {
+    content: " ";
+    display: table; }
+  .album-covers::after {
+    clear: both; }
+
+.collection-album-container {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align-last: center; }
+  .collection-album-container .caption {
+    margin-top: 10px; }
+    .collection-album-container .caption p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6); }
+      .collection-album-container .caption p a {
+        color: rgba(255, 255, 255, 0.6); }
+        .collection-album-container .caption p a .album-name {
+          color: white; }
+  .collection-album-container img {
+    width: 80%; }
