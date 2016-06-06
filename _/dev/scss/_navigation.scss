@@ -34,5 +34,9 @@
     .navbar-link:hover {
       color: $cerise;
     }
+    .navbar-link:active{
+      color: $cerise;
+      background-color: $white;
+    }
   }
 }

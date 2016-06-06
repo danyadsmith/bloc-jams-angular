@@ -441,6 +441,9 @@ body {
       cursor: pointer; }
     .navbar .links-container .navbar-link:hover {
       color: #e93275; }
+    .navbar .links-container .navbar-link:active {
+      color: #e93275;
+      background-color: white; }
 
 body.landing {
   background-color: #3a173f; }
