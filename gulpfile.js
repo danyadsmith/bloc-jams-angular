@@ -70,7 +70,10 @@ gulp.task('styles', function() {
     .pipe(plumber({
       errorHandler: onError
     }))
-    .pipe(sass())
+    .pipe(sass({
+        outputStyle: 'compressed',
+        includePaths: ['node_modules/susy/sass']
+    }).on('error', sass.logError))
     .pipe(gulp.dest('assets/styles'));
 });
 

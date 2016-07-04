@@ -25,32 +25,30 @@ body {
 @media (min-width: 640px) {
   html { font-size: 112%; }
 
-  .column {
-    float: left;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  .container {
+    @include container();
   }
-  .column.full {
-    width: 100%;
+
+  .point {
+    @include span(8 of 24);
+    &:nth-of-type(2n) {
+      @include last;
+    }
   }
-  .column.two-thirds {
-    width: 66.7%;
+
+  .collection-album-container {
+    @include gallery(6 of 24);
   }
-  .column.half {
-    width: 50%;
-  }
-  .column.third {
-    width: 33.3%;
-  }
-  .column.fourth {
-    width: 25%;
-  }
-  .column.flow-opposite {
-    float: right;
-  }  
+
+
 }
 
 /* Large screens (1024px) */
 @media (min-width: 1024px) {
   html { font-size: 120%; }
+
+  .collection-album-container {
+    @include gallery(3 of 24);
+  }
+
 }
