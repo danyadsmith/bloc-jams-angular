@@ -1,3 +1,4 @@
+ /* 
   var animatePoints = function(){
 
     var points = document.getElementsByClassName('point');
@@ -15,3 +16,4 @@
   };
 
   setTimeout(animatePoints, 2000);
+*/
