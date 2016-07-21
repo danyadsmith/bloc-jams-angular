@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var beeper = require('beeper');
-var browserify = require('browserify');
 var browsersync = require('browser-sync');
 var concat = require('gulp-concat');
 var del = require('del');
@@ -17,13 +16,6 @@ function onError(err) {
   console.log(err);
 }
 
-gulp.task('browserify', function(){
-  return browserify('./app/js/app.js')
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(gulp.dest('dist'));
-});
-
 gulp.task('browsersync', function(cb){
   return browsersync({
     server: {
@@ -33,7 +25,7 @@ gulp.task('browsersync', function(cb){
 });
 
 gulp.task('clean', function(cb){
-  return del(['dist/*'], cb);
+  return del(['assets/*'], cb);
 });
 
 gulp.task('album_cover_images', function(){
@@ -57,7 +49,7 @@ gulp.task('images', function(){
 gulp.task('scripts', function() {
   return gulp.src('_/dev/js/*.js')
     .pipe(sourcemaps.init())
-    .pipe(concat('all.js'))
+    //.pipe(concat('all.js'))
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(uglify())

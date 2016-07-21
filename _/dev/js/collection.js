@@ -15,7 +15,7 @@ var collectionItemTemplate = '  <div class="collection-album-container">' +
 window.onload = function(){
   var collectionContainer = document.getElementsByClassName('album-covers')[0];
   collectionContainer.innerHTML = '';
-  for(var i = 0; i < 12; i++){
+  for(var i = 0; i < 16; i++){
     collectionContainer.innerHTML += collectionItemTemplate;
   }
 };
