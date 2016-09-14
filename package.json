@@ -16,7 +16,9 @@
     "jshint": "^2.9.2",
     "vinyl-source-stream": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sass-lint": "^1.9.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

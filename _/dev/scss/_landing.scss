@@ -1,56 +1,56 @@
 body.landing {
-    background-color: $blackberry;
+  background-color: $blackberry;
 }
 
 .hero-content {
-  position: relative;
-  min-height: 600px;
-  background-image: url(../images/bloc_jams_bg.jpg);
-  background-repeat: no-repeat;
+  background-image: url('../images/bloc_jams_bg.jpg');
   background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
+  min-height: 600px;
+  position: relative;
 
   h1 {
     display: none;
   }
 
   .hero-title {
+    font-size: 4rem;
+    font-weight: 300;
+    letter-spacing: .5rem;
     position: absolute;
+    text-align: center;
+    text-shadow: 1px 1px 0 $blackberry;
+    text-transform: uppercase;
     top: 40%;
-    -webkit-transform: translate(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
+    -webkit-transform: translate(-50%);
     transform: translateY(-50%);
     width: 100%;
-    text-align: center;
-    font-size: 4rem;
-    font-weight:300;
-    text-transform: uppercase;
-    letter-spacing: 0.5rem;
-    text-shadow: 1px 1px 0px rgb(58,23,63);
   }
 }
 
 
 .selling-points {
-  position: relative;
   @include clear-fix;
+  position: relative;
 }
 
 .point {
-  position: relative;
-  padding: 2rem;
-  text-align: center;
   opacity: 0;
-  -webkit-transform: scaleX(0.9), translateY(3rem);
-  -moz-transform: scaleX(0.9), translateY(3rem);
-  transform: scaleX(0.9), translateY(3rem);
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  -webkit-transition-delay: 0.2s;
-  -moz-transition-delay: 0.2s;
-  transition-delay: 0.2s;
+  padding: 2rem;
+  position: relative;
+  text-align: center;
+  -moz-transform: scaleX(.9), translateY(3rem);
+  -webkit-transform: scaleX(.9), translateY(3rem);
+  transform: scaleX(.9), translateY(3rem);
+  -moz-transition: all .25s ease-in-out;
+  -webkit-transition: all .25s ease-in-out;
+  transition: all .25s ease-in-out;
+  -moz-transition-delay: .2s;
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
 }
 
 .ion-music-note,

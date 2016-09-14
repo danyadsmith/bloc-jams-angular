@@ -1,42 +1,47 @@
 .navbar {
+  background-color: rgba($boysenberry, .5);
+  padding: .5rem;
   position: relative;
-  padding: 0.5rem;
-  background-color: rgba($boysenberry, 0.5);
   z-index: 1;
+
   .logo {
-    position: relative;
-    left: 2rem;
     cursor: pointer;
+    left: 2rem;
+    position: relative;
   }
+
   .links-container {
-    display: table;
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100px;
     color: $white;
+    display: table;
+    height: 100px;
+    position: absolute;
+    right: 0;
     text-decoration: none;
+    top: 0;
+
     .navbar-link {
+      color: $white;
+      cursor: pointer;
       display: table-cell;
-      position: relative;
+      font-size: .625rem;
+      font-weight: 700;
       height: 100%;
+      letter-spacing: .05rem;
       padding-left: 1rem;
       padding-right: 1rem;
-      vertical-align: middle;
-      color: $white;
-      font-size: 0.625rem;
-      letter-spacing: 0.05rem;
-      font-weight: 700;
-      text-transform: uppercase;
+      position: relative;
       text-decoration: none;
-      cursor: pointer;
+      text-transform: uppercase;
+      vertical-align: middle;
     }
+
     .navbar-link:hover {
       color: $cerise;
     }
-    .navbar-link:active{
-      color: $cerise;
+
+    .navbar-link:active {
       background-color: $white;
+      color: $cerise;
     }
   }
 }

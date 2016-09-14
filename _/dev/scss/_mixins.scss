@@ -1,13 +1,13 @@
 @mixin border-box-sizing {
-     -moz-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @mixin clear-fix {
-  &::before, 
+  &::before,
   &::after {
-    content: " ";
+    content: ' ';
     display: table;
   }
 
