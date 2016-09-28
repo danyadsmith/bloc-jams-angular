@@ -3,6 +3,8 @@
 var currentAlbum = null;
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
+var currentSongFile = null;
+var currentVolume = 80;
 
 var $previousButton = $(".main-controls .previous");
 var $nextButton = $(".main-controls .next");
@@ -36,10 +38,17 @@ var createSongRow = function(songNumber, songName, songLength){
       $(this).html(pauseButtonTemplate);
       setSong(songNumber);
       updatePlayerBarSong();
+      currentSongFile.play();
     } else if (currentlyPlayingSongNumber === songNumber){
-      $(this).html(playButtonTemplate);
-      currentlyPlayingSongNumber = null;
-      currentSongFromAlbum = null;
+      if(currentSongFile.isPaused()){
+        $(this).html(pauseButtonTemplate);
+        $(".main-controls .play-pause").html(playerBarPauseButton);
+        currentSongFile.play();
+      } else {
+        $(this).html(playButtonTemplate);
+        $(".main-controls .play-pause").html(playerBarPlayButton);
+        currentSongFile.pause();        
+      }
     }
 
   };
@@ -110,6 +119,8 @@ var nextSong = function(){
   }
 
   setSong(currentSongIndex + 1);
+  currentSongFile.play();
+  updatePlayerBarSong();
 
   var lastSongNumber = getLastSongNumber(currentSongIndex);
   var $nextSongNumberCell = getSongNumberContainer(currentlyPlayingSongNumber);
@@ -132,6 +143,8 @@ var previousSong = function(){
   }
 
   setSong(currentSongIndex + 1);
+  currentSongFile.play();
+  updatePlayerBarSong();
 
   var lastSongNumber = getLastSongNumber(currentSongIndex);
   var $previousSongNumberCell = getSongNumberContainer(currentlyPlayingSongNumber);
@@ -142,8 +155,18 @@ var previousSong = function(){
 };
 
 var setSong = function(songNumber){
+  if(currentSongFile){
+    currentSongFile.stop();
+  }
   currentlyPlayingSongNumber = songNumber;
   currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+
+  currentSongFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+    formats: ['mp3'],
+    preload: true
+  });
+
+  setVolume(currentVolume);
 
   $(".currently-playing .song-name").text(currentSongFromAlbum.title);
   $(".currently-playing .artist-name").text(currentSongFromAlbum.artist);
@@ -155,6 +178,12 @@ var setSong = function(songNumber){
 var getSongNumberContainer = function(number){
   return $(".song-item-number[data-song-number='" + number + "']");
 };
+
+var setVolume = function(volume){
+  if(currentSongFile){
+    currentSongFile.setVolume(volume);
+  }
+}
 
 $(document).ready(function() { 
   setCurrentAlbum(albumPicasso);
