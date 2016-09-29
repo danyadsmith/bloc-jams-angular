@@ -8,6 +8,7 @@ var currentVolume = 80;
 
 var $previousButton = $(".main-controls .previous");
 var $nextButton = $(".main-controls .next");
+var $playPauseToggle = $(".main-controls .play-pause");
 
 var albumList = [albumPicasso, albumMarconi, albumPurpleRain];
 var counter = 0;
@@ -42,11 +43,11 @@ var createSongRow = function(songNumber, songName, songLength){
     } else if (currentlyPlayingSongNumber === songNumber){
       if(currentSongFile.isPaused()){
         $(this).html(pauseButtonTemplate);
-        $(".main-controls .play-pause").html(playerBarPauseButton);
+        $playPauseToggle.html(playerBarPauseButton);
         currentSongFile.play();
       } else {
         $(this).html(playButtonTemplate);
-        $(".main-controls .play-pause").html(playerBarPlayButton);
+        $playPauseToggle.html(playerBarPlayButton);
         currentSongFile.pause();        
       }
     }
@@ -99,7 +100,7 @@ var setCurrentAlbum = function(album) {
 };
 
 var updatePlayerBarSong = function(){
-  $(".main-controls .play-pause").html(playerBarPauseButton);
+  $playPauseToggle.html(playerBarPauseButton);
 };
 
 var trackIndex = function(album, song){
@@ -172,7 +173,7 @@ var setSong = function(songNumber){
   $(".currently-playing .artist-name").text(currentSongFromAlbum.artist);
   $(".currently-playing .artist-song-mobile").text(currentSongFromAlbum.title + " - " + currentAlbum.title);
 
-  $(".main-controls .play-pause").html(playerBarPauseButton);
+  $playPauseToggle.html(playerBarPauseButton);
 };
 
 var getSongNumberContainer = function(number){
@@ -183,12 +184,25 @@ var setVolume = function(volume){
   if(currentSongFile){
     currentSongFile.setVolume(volume);
   }
-}
+};
+
+var togglePlayFromPlayerBar = function() {
+  if(currentSongFile.isPaused()){
+    $playPauseToggle.html(playerBarPauseButton);
+    getSongNumberContainer(currentlyPlayingSongNumber).html(pauseButtonTemplate);
+    currentSongFile.play();
+  } else {
+    $playPauseToggle.html(playerBarPlayButton);
+    getSongNumberContainer(currentlyPlayingSongNumber).html(currentlyPlayingSongNumber);
+    currentSongFile.pause();
+  }
+};
 
 $(document).ready(function() { 
   setCurrentAlbum(albumPicasso);
   $previousButton.click(previousSong);
   $nextButton.click(nextSong);
+  $playPauseToggle.click(togglePlayFromPlayerBar);
   var albumCover = document.getElementById("album-cover"); 
 });
 
