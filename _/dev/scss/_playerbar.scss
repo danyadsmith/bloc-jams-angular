@@ -114,9 +114,18 @@
       margin-top: -.25rem;
       position: absolute;
       top: 50%;
-      -moz-transition: all 100ms ease-in-out;
-      -webkit-transition: all 100ms ease-in-out;
-      transition: all 100ms ease-in-out;
+      -moz-transition: width 100ms ease-in-out,
+                  height 100ms ease-in-out,
+                  margin-top 100ms ease-in-out,
+                  margin-left 100ms ease-in-out;
+      -webkit-transition: width 100ms ease-in-out,
+                  height 100ms ease-in-out,
+                  margin-top 100ms ease-in-out,
+                  margin-left 100ms ease-in-out;
+      transition: width 100ms ease-in-out,
+                  height 100ms ease-in-out,
+                  margin-top 100ms ease-in-out,
+                  margin-left 100ms ease-in-out;
       width: .5rem;
     }
 
