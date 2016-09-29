@@ -80,6 +80,11 @@ body.album {
   cursor: pointer;
 }
 
+.current-time, 
+.total-time {
+  font-size: .8em;
+}
+
 @media (max-width: 640px) and (min-width: 320px) {
   .album-view-details {
     text-align: center;

@@ -11,6 +11,8 @@ var $nextButton = $(".main-controls .next");
 var $playPauseToggle = $(".main-controls .play-pause");
 var $volumeBar = $(".volume .fill");
 var $volumeSlider = $(".volume .thumb");
+var $currentTimeContainer = $(".current-time");
+var $totalTimeContainer = $(".total-time");
 
 var albumList = [albumPicasso, albumMarconi, albumPurpleRain];
 var counter = 0;
@@ -25,7 +27,7 @@ var createSongRow = function(songNumber, songName, songLength){
       "<tr class='album-view-song-item'>" + 
       "  <td class='song-item-number' data-song-number='" + songNumber + "'>" + songNumber + "</td>" + 
       "  <td class='song-item-title'>" + songName + "</td>" + 
-      "  <td class='song-item-duration'>" + songLength + "</td>" + 
+      "  <td class='song-item-duration'>" + filterTimeCode(songLength) + "</td>" + 
       "</tr>";
 
   var $row = $(template);
@@ -82,6 +84,16 @@ var createSongRow = function(songNumber, songName, songLength){
   $row.find(".song-item-number").click(clickHandler);
   $row.hover(onHover, offHover);
   return $row;
+};
+
+var filterTimeCode = function(timeInSeconds){
+  var timeInMinutes = parseFloat(timeInSeconds) / 60;
+  var minutes = Math.floor(timeInMinutes);
+  var seconds = Math.floor((timeInMinutes - minutes) * 100);
+  if(seconds < 10)
+    return minutes + ":0" + seconds;
+  else
+    return minutes + ":" + seconds;
 };
 
 var getSongNumberContainer = function(number){
@@ -166,6 +178,10 @@ var setCurrentAlbum = function(album) {
   }
 };
 
+var setCurrentTimeInPlayerBar = function(currentTime){
+  $currentTimeContainer.html(filterTimeCode(currentTime));
+};
+
 var setSong = function(songNumber){
   if(currentSongFile){
     currentSongFile.stop();
@@ -185,6 +201,10 @@ var setSong = function(songNumber){
   $(".currently-playing .artist-song-mobile").text(currentSongFromAlbum.title + " - " + currentAlbum.title);
 
   $playPauseToggle.html(playerBarPauseButton);
+};
+
+var setTotalTimeInPlayerBar = function(totalTime){
+  $totalTimeContainer.html(filterTimeCode(totalTime));
 };
 
 var setVolume = function(volume){
@@ -262,6 +282,8 @@ var updateSeekBarWhileSongPlays = function(){
       var seekBarFillRatio = this.getTime() / this.getDuration();
       var $seekBar = $(".seek-control .seek-bar");
       updateSeekPercentage($seekBar, seekBarFillRatio);
+      setCurrentTimeInPlayerBar(this.getTime());
+      setTotalTimeInPlayerBar(this.getDuration());
     });
   }
 };
