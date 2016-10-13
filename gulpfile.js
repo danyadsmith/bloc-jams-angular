@@ -1,15 +1,12 @@
 var gulp = require("gulp");
 var beeper = require("beeper");
 var browsersync = require("browser-sync");
-// var concat = require("gulp-concat");
 var del = require("del");
 var imagemin = require("gulp-imagemin");
 var jshint = require("gulp-jshint");
 var plumber = require("gulp-plumber");
 var sass = require("gulp-sass");
-// var source = require("vinyl-source-stream");
 var sourcemaps = require("gulp-sourcemaps");
-var uglify = require("gulp-uglify");
 
 function onError(err) {
   beeper();
@@ -49,11 +46,8 @@ gulp.task("images", function(){
 gulp.task("scripts", function() {
   return gulp.src("_/dev/js/*.js")
     .pipe(sourcemaps.init())
-    //.pipe(concat("all.js"))
     .pipe(jshint())
     .pipe(jshint.reporter("default"))
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest("app/scripts"));
 });
 
@@ -70,7 +64,8 @@ gulp.task("styles", function() {
 });
 
 gulp.task("watch", function(){
-  gulp.watch("*.html", browsersync.reload);
+  gulp.watch("app/*.html", browsersync.reload);
+  gulp.watch("app/templates/*.html", browsersync.reload);
   gulp.watch("_/dev/scss/*", 
   gulp.series("styles", browsersync.reload));
   gulp.watch("_/dev/js/*.js", 
