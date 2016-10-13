@@ -3,7 +3,7 @@ body.landing {
 }
 
 .hero-content {
-  background-image: url('../images/bloc_jams_bg.jpg');
+  background-image: url('../assets/images/bloc_jams_bg.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -23,10 +23,6 @@ body.landing {
     text-shadow: 1px 1px 0 $blackberry;
     text-transform: uppercase;
     top: 40%;
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translate(-50%);
-    transform: translateY(-50%);
     width: 100%;
   }
 }
@@ -38,19 +34,10 @@ body.landing {
 }
 
 .point {
-  opacity: 0;
+  opacity: 1;
   padding: 2rem;
   position: relative;
   text-align: center;
-  -moz-transform: scaleX(.9), translateY(3rem);
-  -webkit-transform: scaleX(.9), translateY(3rem);
-  transform: scaleX(.9), translateY(3rem);
-  -moz-transition: all .25s ease-in-out;
-  -webkit-transition: all .25s ease-in-out;
-  transition: all .25s ease-in-out;
-  -moz-transition-delay: .2s;
-  -webkit-transition-delay: .2s;
-  transition-delay: .2s;
 }
 
 .ion-music-note,
