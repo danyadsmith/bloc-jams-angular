@@ -1,2 +1,30 @@
-angular.module("blocJams",[]);
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5qcyJdLCJuYW1lcyI6WyJhbmd1bGFyIiwibW9kdWxlIl0sIm1hcHBpbmdzIjoiQUFFQUEsUUFDR0MsT0FBTyIsImZpbGUiOiJhcHAuanMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBnbG9iYWwgYW5ndWxhciAgKi9cblxuYW5ndWxhclxuICAubW9kdWxlKFwiYmxvY0phbXNcIiwgW1xuICBdKTsiXSwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0=
+/* global angular  */
+(function(){
+  function config($stateProvider, $locationProvider){
+    $locationProvider
+      .html5Mode({
+        enabled: true,
+        requireBase: false
+      });
+    $stateProvider
+      .state("landing", {
+        url: "/",
+        templateUrl: "/templates/landing.html"
+      })
+      .state("album", {
+        url: "/album",
+        templateUrl: "/templates/album.html"
+      })
+      .state("collection", {
+        url: "/collection",
+        templateUrl: "/templates/collection.html"
+      });
+  }
+
+  angular
+    .module("blocJams", [
+      "ui.router"
+    ])
+    .config(config);
+
+})();
