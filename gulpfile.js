@@ -44,7 +44,7 @@ gulp.task("images", function(){
 });
 
 gulp.task("scripts", function() {
-  return gulp.src("_/dev/js/*.js")
+  return gulp.src("_/dev/js/**/*.js")
     .pipe(sourcemaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter("default"))
