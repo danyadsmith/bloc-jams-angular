@@ -55,6 +55,17 @@
           return albumPicasso;
         };
 
+        Fixtures.getCollection = function(numAlbums){
+          var albumsInCollection = [];
+          for(var i = 0; i < numAlbums; i++){
+            albumsInCollection.push(albumPicasso);
+            // albumsInCollection.push(albumMarconi);
+            // albumsInCollection.push(albumPurpleRain);
+          }
+
+          return albumsInCollection;
+        };
+
         return Fixtures;
      }
  
