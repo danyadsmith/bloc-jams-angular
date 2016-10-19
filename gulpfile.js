@@ -43,6 +43,12 @@ gulp.task("images", function(){
     .pipe(gulp.dest("app/assets/images")); 
 });
 
+gulp.task("music", function(){
+  return gulp.src("_/dev/media/*")
+    .pipe(imagemin())
+    .pipe(gulp.dest("app/assets/music")); 
+});
+
 gulp.task("scripts", function() {
   return gulp.src("_/dev/js/**/*.js")
     .pipe(sourcemaps.init())
@@ -74,4 +80,4 @@ gulp.task("watch", function(){
   gulp.series("images", browsersync.reload));
 });
 
-gulp.task("default", gulp.parallel("browsersync", "styles", "scripts", "images", "album_cover_images", "background_images", "watch"));
+gulp.task("default", gulp.parallel("browsersync", "styles", "scripts", "images", "album_cover_images", "background_images", "music", "watch"));
