@@ -34,9 +34,9 @@
     };
 
     /**
-     * [getSongIndex description]
-     * @param  {[type]} song [description]
-     * @return {[type]}      [description]
+     * @function getSongIndex
+     * @description Gets the index of a given song in an album array.
+     * @param { Object } song
      */
     var getSongIndex = function(song){
       return currentAlbum.songs.indexOf(song);
@@ -52,6 +52,11 @@
       song.playing = true;
     };
 
+    var stopSong = function(song){
+      currentBuzzObject.stop();
+      song.playing = null;
+    };
+
     /** 
      * @description  Active song object from list of songs
      * @type {Object}
@@ -59,8 +64,9 @@
     SongPlayer.currentSong = null;
 
     /**
-     * Play a song
-     * @param  {Object} song [the song to play]
+     * @function SongPlayer.play
+     * @description  Play the selected song
+     * @param  {Object} song
      */
     SongPlayer.play = function(song){
       song = song || SongPlayer.currentSong;
@@ -94,8 +100,7 @@
       currentSongIndex--;
 
       if (currentSongIndex < 0){
-        currentBuzzObject.stop();
-        SongPlayer.currentSong.playing = null;
+        stopSong(song);
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
@@ -103,6 +108,18 @@
       }
     };
 
+    SongPlayer.next = function(){
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex++;
+
+      if (currentSongIndex > currentAlbum.songs.length){
+        stopSong(song);
+      } else {
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+    };
 
     return SongPlayer;
   }
