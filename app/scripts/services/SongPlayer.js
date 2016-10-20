@@ -1,16 +1,13 @@
 /* global angular buzz */
 
 (function(){
-  function SongPlayer(){
+  function SongPlayer(Fixtures){
     var SongPlayer = {};
+
+    var currentAlbum = Fixtures.getAlbum();
 
     this.SongPlayer = SongPlayer;
 
-    /**
-     * @desc Current Song
-     * @type { Object }
-     */
-    var currentSong = null;
     /**
      * @description Buzz object audio file
      * @type { Object }
@@ -25,7 +22,7 @@
     var setSong = function(song){
       if(currentBuzzObject) {
         currentBuzzObject.stop();
-        currentSong.playing = null;
+        SongPlayer.currentSong.playing = null;
       }
   
       currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -33,7 +30,16 @@
         preload: true
       });
 
-      currentSong = song;
+      SongPlayer.currentSong = song;
+    };
+
+    /**
+     * [getSongIndex description]
+     * @param  {[type]} song [description]
+     * @return {[type]}      [description]
+     */
+    var getSongIndex = function(song){
+      return currentAlbum.songs.indexOf(song);
     };
 
     /**
@@ -46,16 +52,22 @@
       song.playing = true;
     };
 
+    /** 
+     * @description  Active song object from list of songs
+     * @type {Object}
+     */
+    SongPlayer.currentSong = null;
+
     /**
-     * @function SongPlayer.play
-     * @description Public method that plays a selected song
-     * @param { Object } song
+     * Play a song
+     * @param  {Object} song [the song to play]
      */
     SongPlayer.play = function(song){
-      if(currentSong !== song){
+      song = song || SongPlayer.currentSong;
+      if(SongPlayer.currentSong !== song){
         setSong(song);
         playSong(song);
-      } else if (currentSong === song) {
+      } else if (SongPlayer.currentSong === song) {
         if(currentBuzzObject.isPaused()) {
           playSong(song);
         }
@@ -64,13 +76,33 @@
 
     /**
      * @function SongPlayer.pause
-     * @description Public method that pauses a currently playing song
+     * @description Pause the currently playing song
      * @param { Object } song
      */
     SongPlayer.pause = function(song){
+      song = song || SongPlayer.currentSong;
       currentBuzzObject.pause();
       song.playing = false;
     };
+
+    /**
+     * @function SongPlayer.previous
+     * @description  Play the previous track
+     */
+    SongPlayer.previous = function(){
+      var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex--;
+
+      if (currentSongIndex < 0){
+        currentBuzzObject.stop();
+        SongPlayer.currentSong.playing = null;
+      } else {
+        var song = currentAlbum.songs[currentSongIndex];
+        setSong(song);
+        playSong(song);
+      }
+    };
+
 
     return SongPlayer;
   }
