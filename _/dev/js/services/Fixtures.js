@@ -34,25 +34,6 @@
       ]
     };
 
-    var albumPurpleRain = {
-      title: "Purple Rain",
-      artist: "Prince",
-      label: "Warner Bros.",
-      year: "1984",
-      albumArtUrl: "/assets/images/album_covers/22.jpg",
-      songs: [
-      { title: "Let's Go Crazy", duration: "4:39" },
-      { title: "Take Me With U", duration: "3:54" },
-      { title: "The Beautiful Ones", duration: "5:14" },
-      { title: "Computer Blue", duration: "4:00" },
-      { title: "Darling Nikki", duration: "4:15" },
-      { title: "When Doves Cry", duration: "5:54" },
-      { title: "I Would Die 4 U", duration: "2:49" },
-      { title: "Baby I'm A Star", duration: "4:25" },
-      { title: "Purple Rain", duration: "8:42" }
-      ]
-    };
-
     Fixtures.getAlbum = function() {
       return albumPicasso;
     };
@@ -61,8 +42,6 @@
       var albumsInCollection = [];
       for(var i = 0; i < numAlbums; i++){
         albumsInCollection.push(albumPicasso);
-        albumsInCollection.push(albumMarconi);
-        albumsInCollection.push(albumPurpleRain);
       }
 
       return albumsInCollection;
