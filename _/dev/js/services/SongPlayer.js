@@ -58,6 +58,11 @@
       song.playing = true;
     };
 
+    /**
+     * @function stopSong
+     * @description Stops the currently playing song
+     * @param  { Object } song 
+     */
     var stopSong = function(song){
       currentBuzzObject.stop();
       song.playing = null;
@@ -74,6 +79,9 @@
      * @type { Number }
      */
     SongPlayer.currentTime = null;
+
+    SongPlayer.volume = 10;
+    SongPlayer.maxVolume = 100;
 
     /**
      * @function SongPlayer.play
@@ -145,6 +153,17 @@
     SongPlayer.setCurrentTime = function(time){
       if(currentBuzzObject){
         currentBuzzObject.setTime(time);
+      }
+    };
+
+    /**
+     * @function setVolume
+     * @description Set volume level of currently playing song.
+     * @param {Number} volume
+     */
+    SongPlayer.setVolume = function(volume){
+      if(currentBuzzObject){
+        currentBuzzObject.setVolume(volume);
       }
     };
 
