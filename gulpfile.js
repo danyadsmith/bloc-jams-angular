@@ -21,8 +21,14 @@ gulp.task("browsersync", function(cb){
   }, cb);
 });
 
-gulp.task("clean", function(cb){
-  return del(["assets/*"], cb);
+gulp.task("clean_assets", function(cb){
+  return del(["app/assets/*"], cb);
+});
+gulp.task("clean_scripts", function(cb){
+  return del(["app/scripts/*"], cb);
+});
+gulp.task("clean_styles", function(cb){
+  return del(["app/styles/*"], cb);
 });
 
 gulp.task("album_cover_images", function(){
@@ -79,5 +85,7 @@ gulp.task("watch", function(){
   gulp.watch("_/dev/img/*", 
   gulp.series("images", browsersync.reload));
 });
+
+gulp.task("clean", gulp.parallel("clean_assets", "clean_scripts", "clean_styles"));
 
 gulp.task("default", gulp.parallel("browsersync", "styles", "scripts", "images", "album_cover_images", "background_images", "music", "watch"));
